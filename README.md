@@ -1,1 +1,1 @@
-# capasitor_plugin
+# capacitor_plugin
