@@ -19,9 +19,6 @@ window.customElements.define(
         width: 100%;
         height: 100%;
       }
-      h1, h2, h3, h4, h5 {
-        text-transform: uppercase;
-      }
       .button {
         display: inline-block;
         padding: 10px;
@@ -32,21 +29,11 @@ window.customElements.define(
         border-radius: 3px;
         text-decoration: none;
         cursor: pointer;
+        margin-right: 10px;
       }
       main {
         padding: 15px;
-      }
-      main hr { height: 1px; background-color: #eee; border: 0; }
-      main h1 {
-        font-size: 1.4em;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      main h2 {
-        font-size: 1.1em;
-      }
-      main h3 {
-        font-size: 0.9em;
+        text-align: center;
       }
       main p {
         color: #333;
@@ -61,29 +48,13 @@ window.customElements.define(
       </capacitor-welcome-titlebar>
       <main>
         <p>
-          Capacitor makes it easy to build powerful apps for the app stores, mobile web (Progressive Web Apps), and desktop, all
-          with a single code base.
-        </p>
-        <h2>Getting Started</h2>
-        <p>
-          You'll probably need a UI framework to build a full-featured app. Might we recommend
-          <a target="_blank" href="http://ionicframework.com/">Ionic</a>?
+        Capacitor sample app with Speedcheker plugin. 
         </p>
         <p>
-          Visit <a href="https://capacitorjs.com">capacitorjs.com</a> for information
-          on using native features, building plugins, and more.
+          <button class="button" id="startTestBtn">Start Test</button>
+          <button class="button" id="stopTestBtn">Stop Test</button>
         </p>
-        <a href="https://capacitorjs.com" target="_blank" class="button">Read more</a>
-        <h2>Tiny Demo</h2>
-        <p>
-          This demo shows how to call Capacitor plugins. Say cheese!
-        </p>
-        <p>
-          <button class="button" id="take-photo">Take Photo</button>
-        </p>
-        <p>
-          <img id="image" style="max-width: 100%">
-        </p>
+        <div id="log"></div>
       </main>
     </div>
     `;
