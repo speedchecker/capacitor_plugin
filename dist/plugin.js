@@ -1,14 +1,42 @@
 var capacitorSpeedChecker = (function (exports, core) {
     'use strict';
 
-    const SpeedChecker = core.registerPlugin('SpeedChecker', {
+    const SpeedChecker$1 = core.registerPlugin('SpeedChecker', {
         web: () => Promise.resolve().then(function () { return web; }).then(m => new m.SpeedCheckerWeb()),
     });
 
+    const { SpeedChecker } = core.Plugins;
     class SpeedCheckerWeb extends core.WebPlugin {
-        async echo(options) {
-            console.log('ECHO', options);
-            return options;
+        constructor() {
+            super(...arguments);
+            this.eventListeners = new Map();
+        }
+        async stopTest() {
+            console.log('stopping test from Capacitor side');
+            const handle = this.eventListeners.get('dataReceived');
+            if (handle) {
+                handle.remove();
+                this.eventListeners.delete('dataReceived');
+            }
+        }
+        async startTest() {
+            console.log('Starting test from Capacitor side');
+            const handle = this.addListener('dataReceived', (data) => {
+                console.log('Received data from Android:', data);
+            });
+            this.eventListeners.set('dataReceived', handle);
+        }
+        async setIosLicenseKey(options) {
+            if (core.Capacitor.platform === 'ios') {
+                await SpeedChecker.setIosLicenseKey(options);
+                console.log('iOS license key is set to: ' + options.key);
+            }
+        }
+        async setAndroidLicenseKey(options) {
+            if (core.Capacitor.platform === 'android') {
+                await SpeedChecker.setAndroidLicenseKey(options);
+                console.log('Android license key is set to: ' + options.key);
+            }
         }
     }
 
@@ -17,7 +45,7 @@ var capacitorSpeedChecker = (function (exports, core) {
         SpeedCheckerWeb: SpeedCheckerWeb
     });
 
-    exports.SpeedChecker = SpeedChecker;
+    exports.SpeedChecker = SpeedChecker$1;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

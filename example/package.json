@@ -13,12 +13,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@capacitor/core": "latest",
+    "@capacitor/android": "^5.0.0",
     "@capacitor/camera": "latest",
+    "@capacitor/core": "latest",
+    "@capacitor/ios": "^5.0.0",
     "@capacitor/splash-screen": "latest",
     "@speedchecker/capacitor-plugin": "file:..",
-    "@capacitor/ios": "^5.0.0",
-    "@capacitor/android": "^5.0.0"
+    "android": "^0.0.8"
   },
   "devDependencies": {
     "@capacitor/cli": "latest",

@@ -1,4 +1,4 @@
-package com.example.plugin;
+package com.speedchecker.demo;
 
 import com.getcapacitor.BridgeActivity;
 

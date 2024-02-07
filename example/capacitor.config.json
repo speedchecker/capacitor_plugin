@@ -1,5 +1,5 @@
 {
-  "appId": "com.example.plugin",
+  "appId": "com.speedchecker.demo",
   "appName": "example",
   "bundledWebRuntime": false,
   "webDir": "dist",
