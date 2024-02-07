@@ -13,7 +13,7 @@
     "ios/Plugin/",
     "SpeedcheckerCapacitorPlugin.podspec"
   ],
-  "author": "speedchecker",
+  "author": "Speedchecker",
   "license": "MIT",
   "repository": {
     "type": "git",

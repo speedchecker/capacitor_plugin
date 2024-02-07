@@ -1,13 +1,10 @@
-import { SplashScreen } from '@capacitor/splash-screen';
-import { Camera } from '@capacitor/camera';
+import { SpeedChecker} from '@speedchecker/capacitor-plugin'
 
 window.customElements.define(
   'capacitor-welcome',
   class extends HTMLElement {
     constructor() {
       super();
-
-      SplashScreen.hide();
 
       const root = this.attachShadow({ mode: 'open' });
 
@@ -62,24 +59,66 @@ window.customElements.define(
 
     connectedCallback() {
       const self = this;
+      const logDiv = self.shadowRoot.getElementById('log');
+      let isListenerAdded = false;
 
-      self.shadowRoot.querySelector('#take-photo').addEventListener('click', async function (e) {
+      self.shadowRoot.querySelector('#startTestBtn').addEventListener('click', async function (e) {
         try {
-          const photo = await Camera.getPhoto({
-            resultType: 'uri',
-          });
+          if (!isListenerAdded) {
+            const handle = SpeedChecker.addListener('dataReceived', (data) => {
+              const event = data.event;
+              const ping = data.ping;
+              const progress = data.progress;
+              const downloadSpeed = data.downloadSpeed;
+              const uploadSpeed = data.uploadSpeed;
+              let logText = '';
+      
+              if (event) {
+                logText = event;
+              }
+      
+              if (ping) {
+                logText = 'Ping: ' + ping.toFixed() + ' ms';
+              }
 
-          const image = self.shadowRoot.querySelector('#image');
-          if (!image) {
-            return;
+              if (progress && downloadSpeed) {
+                logText = 'Progress: ' + progress + '%<br>Download speed: ' + downloadSpeed.toFixed(2) + ' Mbps';
+              }
+
+              if (progress && uploadSpeed) {
+                logText = 'Progress: ' + progress + '%<br>Upload speed: ' + uploadSpeed.toFixed(2) + ' Mbps';
+              }
+      
+              if (event == 'Test finished') {
+                logText = 'Test finished <br>Ping: ' + ping +  '<br>Download speed: ' + downloadSpeed.toFixed(2) + ' Mbps' + '<br>Upload speed: ' + uploadSpeed.toFixed(2) + ' Mbps<br> Jitter: ' + data.jitter + '<br>ConnectionType: ' + data.connectionType + '<br>Server: ' + data.server + '<br>Ip: ' + data.ipAddress + '<br>Isp: ' + data.ispName;
+                console.log(logText);
+      
+                isListenerAdded = true;
+                
+                handle.remove();
+              }
+      
+              logDiv.innerHTML = logText;
+            });
           }
-
-          image.src = photo.webPath;
-        } catch (e) {
-          console.warn('User cancelled', e);
+      
+          await SpeedChecker.startTest();
+        } catch (error) {
+          console.error(error);
         }
       });
-    }
+      
+      self.shadowRoot.querySelector('#stopTestBtn').addEventListener('click', async function (e) {
+        try {
+          await SpeedChecker.stopTest();
+          SpeedChecker.removeAllListeners();
+          isListenerAdded = false;
+        } catch (error) {
+          console.error(error);
+        }
+      });
+           
+    }    
   }
 );
 

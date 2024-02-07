@@ -1,7 +1,10 @@
 export interface SpeedCheckerPlugin {
-    echo(options: {
-        value: string;
-    }): Promise<{
-        value: string;
-    }>;
+    setIosLicenseKey(options: {
+        key: string;
+    }): Promise<void>;
+    setAndroidLicenseKey(options: {
+        key: string;
+    }): Promise<void>;
+    startTest(): Promise<void>;
+    stopTest(): Promise<void>;
 }

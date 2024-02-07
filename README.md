@@ -13,24 +13,56 @@ npx cap sync
 
 <docgen-index>
 
-* [`echo(...)`](#echo)
+* [`setIosLicenseKey(...)`](#setioslicensekey)
+* [`setAndroidLicenseKey(...)`](#setandroidlicensekey)
+* [`startTest()`](#starttest)
+* [`stopTest()`](#stoptest)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### echo(...)
+### setIosLicenseKey(...)
 
 ```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
+setIosLicenseKey(options: { key: string; }) => Promise<void>
 ```
 
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
+| Param         | Type                          |
+| ------------- | ----------------------------- |
+| **`options`** | <code>{ key: string; }</code> |
 
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+--------------------
+
+
+### setAndroidLicenseKey(...)
+
+```typescript
+setAndroidLicenseKey(options: { key: string; }) => Promise<void>
+```
+
+| Param         | Type                          |
+| ------------- | ----------------------------- |
+| **`options`** | <code>{ key: string; }</code> |
+
+--------------------
+
+
+### startTest()
+
+```typescript
+startTest() => Promise<void>
+```
+
+--------------------
+
+
+### stopTest()
+
+```typescript
+stopTest() => Promise<void>
+```
 
 --------------------
 
