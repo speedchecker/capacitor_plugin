@@ -56,6 +56,74 @@
         "docs": "",
         "complexTypes": [],
         "slug": "stoptest"
+      },
+      {
+        "name": "shareBackgroundTestLogs",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "sharebackgroundtestlogs"
+      },
+      {
+        "name": "setBackgroundNetworkTestingEnabled",
+        "signature": "(options: { bgTestingStatus: boolean; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ bgTestingStatus: boolean; }"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setbackgroundnetworktestingenabled"
+      },
+      {
+        "name": "getBackgroundTestingStatus",
+        "signature": "() => Promise<{ getBackgroundTestingStatus: boolean; }>",
+        "parameters": [],
+        "returns": "Promise<{ getBackgroundTestingStatus: boolean; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getbackgroundtestingstatus"
+      },
+      {
+        "name": "setMSISDN",
+        "signature": "(options: { msisdn: string; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ msisdn: string; }"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setmsisdn"
+      },
+      {
+        "name": "setUserId",
+        "signature": "(options: { userId: string; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ userId: string; }"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setuserid"
       }
     ],
     "properties": []

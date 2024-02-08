@@ -5,6 +5,7 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
+import com.speedchecker.android.sdk.Public.EDebug;
 import com.speedchecker.android.sdk.Public.SpeedTestListener;
 import com.speedchecker.android.sdk.Public.SpeedTestResult;
 import com.speedchecker.android.sdk.SpeedcheckerSDK;
@@ -23,6 +24,7 @@ public class SpeedCheckerPlugin extends Plugin {
     private static final String PARAMETER_ISP = "ispName";
     private static final String PARAMETER_SERVER = "server";
     private static final String PARAMETER_CONNECTION_TYPE = "connectionType";
+    private static final String GET_BACKGROUND_TESTING_STATUS = "getBackgroundTestingStatus";
     private static String LICENSE_KEY = "";
 
     @PluginMethod
@@ -154,6 +156,40 @@ public class SpeedCheckerPlugin extends Plugin {
         JSObject result = new JSObject();
         result.put(PARAMETER_EVENT, "Test is stopped");
         logResult(result, call);
+    }
+
+    @PluginMethod
+    public void shareBackgroundTestLogs (PluginCall call) {
+        EDebug.sendLogFiles(getActivity());
+    }
+
+    @PluginMethod
+    public void setBackgroundNetworkTestingEnabled (PluginCall call) {
+        Boolean bgTestingStatus = call.getBoolean("bgTestingStatus");
+        if (bgTestingStatus != null) {
+            SpeedcheckerSDK.setBackgroundNetworkTesting(getActivity(), bgTestingStatus);
+        } else {
+            call.reject("Parameter 'bgTestingStatus' is null");
+        }
+    }
+    @PluginMethod
+    public void getBackgroundTestingStatus (PluginCall call) {
+        boolean bgTestingStatus = SpeedcheckerSDK.isBackgroundNetworkTesting(getActivity());
+        JSObject result = new JSObject();
+        result.put(GET_BACKGROUND_TESTING_STATUS, bgTestingStatus);
+        logResult(result, call);
+    }
+
+    @PluginMethod
+    public void setMSISDN (PluginCall call) {
+        String msisdn = call.getString("msisdn");
+        SpeedcheckerSDK.setMSISDN(getContext(), msisdn);
+    }
+
+    @PluginMethod
+    public void setUserId (PluginCall call) {
+        String userId = call.getString("userId");
+        SpeedcheckerSDK.setUserId(getContext(), userId);
     }
 
     @PluginMethod

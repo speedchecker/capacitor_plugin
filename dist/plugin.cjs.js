@@ -41,6 +41,21 @@ class SpeedCheckerWeb extends core.WebPlugin {
             console.log('Android license key is set to: ' + options.key);
         }
     }
+    async shareBackgroundTestLogs() {
+    }
+    async setBackgroundNetworkTestingEnabled(options) {
+        console.log("Background testing enabled:", options.bgTestingStatus);
+    }
+    async getBackgroundTestingStatus() {
+        console.log("Background Testing Status: " + this.getBackgroundTestingStatus);
+        return { getBackgroundTestingStatus: false };
+    }
+    async setMSISDN(options) {
+        console.log("MSISDN: ", options.msisdn);
+    }
+    async setUserId(options) {
+        console.log("Uswr ID: ", options.userId);
+    }
 }
 
 var web = /*#__PURE__*/Object.freeze({

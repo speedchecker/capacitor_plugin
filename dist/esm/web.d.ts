@@ -10,4 +10,17 @@ export declare class SpeedCheckerWeb extends WebPlugin implements SpeedCheckerPl
     setAndroidLicenseKey(options: {
         key: string;
     }): Promise<void>;
+    shareBackgroundTestLogs(): Promise<void>;
+    setBackgroundNetworkTestingEnabled(options: {
+        bgTestingStatus: boolean;
+    }): Promise<void>;
+    getBackgroundTestingStatus(): Promise<{
+        getBackgroundTestingStatus: boolean;
+    }>;
+    setMSISDN(options: {
+        msisdn: string;
+    }): Promise<void>;
+    setUserId(options: {
+        userId: string;
+    }): Promise<void>;
 }

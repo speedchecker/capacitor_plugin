@@ -37,4 +37,25 @@ export class SpeedCheckerWeb extends WebPlugin implements SpeedCheckerPlugin {
       console.log('Android license key is set to: ' + options.key);
     }
   }
+
+  async shareBackgroundTestLogs(): Promise<void> {
+    
+  }
+
+  async setBackgroundNetworkTestingEnabled(options: { bgTestingStatus: boolean }): Promise<void> {
+    console.log("Background testing enabled:", options.bgTestingStatus);
+  }
+
+  async getBackgroundTestingStatus(): Promise<{ getBackgroundTestingStatus: boolean }> {
+    console.log("Background Testing Status: " + this.getBackgroundTestingStatus)
+    return { getBackgroundTestingStatus: false };
+  }
+
+  async setMSISDN(options: { msisdn: string }): Promise<void> {
+    console.log("MSISDN: ", options.msisdn);
+  }
+
+  async setUserId(options: { userId: string }): Promise<void> {
+    console.log("Uswr ID: ", options.userId);
+  }
 }

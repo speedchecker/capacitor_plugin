@@ -62,6 +62,9 @@ window.customElements.define(
       const logDiv = self.shadowRoot.getElementById('log');
       let isListenerAdded = false;
 
+      // SpeedChecker.setAndroidLicenseKey({ key: '_your_android_key' });
+      // SpeedChecker.setIosLicenseKey({ key: '_your_ios_key' });
+
       self.shadowRoot.querySelector('#startTestBtn').addEventListener('click', async function (e) {
         try {
           if (!isListenerAdded) {
