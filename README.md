@@ -142,7 +142,6 @@ npx cap run ios
 ```
 
 ## How to use
-Use the following (sample) functions in index.js:
 
 ### Import plugin into project file
 
@@ -209,6 +208,8 @@ Plugin includes "startTest" function with listener "dataReceived", which you can
         }
       });
 ```
+>**Note**: Don't forget to run ``` npm run build ``` after modifying your app js file (such as capacitor-welcome.js), to apply the
+> changes.
 
 ## Uninstalling
 To uninstall the plugin, run the following commands
