@@ -94,10 +94,14 @@ npx cap add android
 npm install @speedchecker/capacitor-plugin
 ````
 
-### 6. Add custom maven repositories
+### 6. Project configuration
+
+#### Android:
+
+##### Add custom maven repositories
+
 Speedchecker SDK uses custom Maven repository for android. You need to add this maven credentials to your project build.gradle file. This file is located here: your-capacitor-app/android/build.gradle
 
-* Android:
 ```
 allprojects {
     repositories {
@@ -128,6 +132,69 @@ allprojects {
 
 ```
 
+#### iOS:
+
+##### License key (paid users)
+
+if you have a license key, you can add it to `Info.plist`:
+```
+<key>SpeedCheckerLicenseKey</key>
+<string>your_ios_key</string>
+```
+
+##### Location permission keys
+
+WhenInUse location permission key is required if you are free SDK user. Add to `Info.plist`:
+```
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>your custom text here</string>
+```
+
+Always location permission keys are required if you are using background tests. Add to `Info.plist`:
+```
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>your custom text here</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>your custom text here</string>
+```
+
+##### Background tests setup (paid users)
+
+If you want to use background tests, add following keys to `Info.plist`:
+
+Background modes key
+```
+<key>UIBackgroundModes</key>
+<array>
+	<string>location</string>
+	<string>processing</string>
+</array>
+```
+
+BGTaskSchedulerPermittedIdentifiers key
+```
+<key>BGTaskSchedulerPermittedIdentifiers</key>
+<array>
+	<string>com.speedchecker.bgtests</string>
+</array>
+```
+
+Additional background test setup keys
+```
+<key>SpeedCheckerBackgroundConfigURL</key>
+<string>your background config URL</string>
+```
+
+You will also have to initialize background tests in `AppDelegate` like this:
+```
+import SpeedcheckerCapacitorPlugin
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    SpeedChecker.initializeBackgroundTests(launchOptions: launchOptions)
+    return true
+}
+```
+
 ### 7. Sync the plugin with the native projects
 ````
 npx cap sync
@@ -149,18 +216,16 @@ npx cap run ios
 import { SpeedChecker} from '@speedchecker/capacitor-plugin'
 ```
 
-### Set a license key (for paid users).
+### Set a license key Android (paid users).
+
 if you have a license key, you can add your key as a String value in the app:
 
 ```
 SpeedChecker.setAndroidLicenseKey({ key: '_your_android_key' });
 ```
-```
-SpeedChecker.setIosLicenseKey({ key: '_your_ios_key' });
-```
-Licenses should be set _before_ starting the test. Make sure your package name (for Android) or bundle id (for iOS) is the same as
-defined in your license agreement. You can use both methods simultaneously if you have licenses for both platforms
 
+License should be set _before_ starting the test.
+Make sure your package name (for Android) or bundle id (for iOS) is the same as defined in your license agreement.
 
 ### To start speed test by event (e.g. button click):
 Plugin includes "startTest" function with listener "dataReceived", which you can listen to receive data from Speedchecker servers:

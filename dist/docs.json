@@ -6,22 +6,6 @@
     "tags": [],
     "methods": [
       {
-        "name": "setIosLicenseKey",
-        "signature": "(options: { key: string; }) => Promise<void>",
-        "parameters": [
-          {
-            "name": "options",
-            "docs": "",
-            "type": "{ key: string; }"
-          }
-        ],
-        "returns": "Promise<void>",
-        "tags": [],
-        "docs": "",
-        "complexTypes": [],
-        "slug": "setioslicensekey"
-      },
-      {
         "name": "setAndroidLicenseKey",
         "signature": "(options: { key: string; }) => Promise<void>",
         "parameters": [
