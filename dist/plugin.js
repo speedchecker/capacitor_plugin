@@ -26,12 +26,6 @@ var capacitorSpeedChecker = (function (exports, core) {
             });
             this.eventListeners.set('dataReceived', handle);
         }
-        async setIosLicenseKey(options) {
-            if (core.Capacitor.platform === 'ios') {
-                await SpeedChecker.setIosLicenseKey(options);
-                console.log('iOS license key is set to: ' + options.key);
-            }
-        }
         async setAndroidLicenseKey(options) {
             if (core.Capacitor.platform === 'android') {
                 await SpeedChecker.setAndroidLicenseKey(options);

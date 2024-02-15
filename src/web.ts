@@ -19,16 +19,9 @@ export class SpeedCheckerWeb extends WebPlugin implements SpeedCheckerPlugin {
     console.log('Starting test from Capacitor side');
     const handle = this.addListener('dataReceived', (data: any) => {
       console.log('Received data from Android:', data);
-  });
+    });
 
-  this.eventListeners.set('dataReceived', handle);
-  }
-
-  async setIosLicenseKey(options: { key: string }): Promise<void> {
-    if (Capacitor.platform === 'ios') {
-      await SpeedChecker.setIosLicenseKey(options);
-      console.log('iOS license key is set to: ' + options.key);
-    }
+    this.eventListeners.set('dataReceived', handle);
   }
 
   async setAndroidLicenseKey(options: { key: string }): Promise<void> {

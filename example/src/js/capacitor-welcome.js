@@ -60,17 +60,16 @@ window.customElements.define(
     connectedCallback() {
       const self = this;
       const logDiv = self.shadowRoot.getElementById('log');
-      let isListenerAdded = false;
 
       self.shadowRoot.querySelector('#startTestBtn').addEventListener('click', async function (e) {
         try {
-          if (!isListenerAdded) {
-            const handle = SpeedChecker.addListener('dataReceived', (data) => {
+            await SpeedChecker.addListener('dataReceived', (data) => {
               const event = data.event;
               const ping = data.ping;
               const progress = data.progress;
               const downloadSpeed = data.downloadSpeed;
               const uploadSpeed = data.uploadSpeed;
+              const error = data.error;
               let logText = '';
       
               if (event) {
@@ -93,18 +92,21 @@ window.customElements.define(
                 logText = 'Test finished <br>Ping: ' + ping +  '<br>Download speed: ' + downloadSpeed.toFixed(2) + ' Mbps' + '<br>Upload speed: ' + uploadSpeed.toFixed(2) + ' Mbps<br> Jitter: ' + data.jitter + '<br>ConnectionType: ' + data.connectionType + '<br>Server: ' + data.server + '<br>Ip: ' + data.ipAddress + '<br>Isp: ' + data.ispName;
                 console.log(logText);
       
-                isListenerAdded = true;
-                
-                handle.remove();
+                SpeedChecker.removeAllListeners();
+              } else if (error) {
+                logText = error;
+
+                SpeedChecker.removeAllListeners();
               }
       
               logDiv.innerHTML = logText;
             });
-          }
       
           await SpeedChecker.startTest();
         } catch (error) {
           console.error(error);
+          logDiv.innerHTML = error;
+          SpeedChecker.removeAllListeners();
         }
       });
       
@@ -112,9 +114,9 @@ window.customElements.define(
         try {
           await SpeedChecker.stopTest();
           SpeedChecker.removeAllListeners();
-          isListenerAdded = false;
         } catch (error) {
           console.error(error);
+          logDiv.innerHTML = error;
         }
       });
            

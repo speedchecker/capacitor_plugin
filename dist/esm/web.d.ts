@@ -4,9 +4,6 @@ export declare class SpeedCheckerWeb extends WebPlugin implements SpeedCheckerPl
     private eventListeners;
     stopTest(): Promise<void>;
     startTest(): Promise<void>;
-    setIosLicenseKey(options: {
-        key: string;
-    }): Promise<void>;
     setAndroidLicenseKey(options: {
         key: string;
     }): Promise<void>;

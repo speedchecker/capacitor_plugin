@@ -1,0 +1,47 @@
+PODS:
+  - Capacitor (5.6.0):
+    - CapacitorCordova
+  - CapacitorCamera (5.0.9):
+    - Capacitor
+  - CapacitorCordova (5.6.0)
+  - CapacitorSplashScreen (5.0.7):
+    - Capacitor
+  - SpeedcheckerCapacitorPlugin (0.0.1):
+    - Capacitor
+    - SpeedcheckerSDK (= 2.0.2)
+  - SpeedcheckerSDK (2.0.2)
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorCamera (from `../../node_modules/@capacitor/camera`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
+  - SpeedcheckerCapacitorPlugin (from `../../..`)
+
+SPEC REPOS:
+  trunk:
+    - SpeedcheckerSDK
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorCamera:
+    :path: "../../node_modules/@capacitor/camera"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorSplashScreen:
+    :path: "../../node_modules/@capacitor/splash-screen"
+  SpeedcheckerCapacitorPlugin:
+    :path: "../../.."
+
+SPEC CHECKSUMS:
+  Capacitor: ebfc16cdb8116d04c101686b080342872da42d43
+  CapacitorCamera: 4892c5c392f60039d853dde78bc50ba19fbd113e
+  CapacitorCordova: 931b48fcdbc9bc985fc2f16cec9f77c794a27729
+  CapacitorSplashScreen: dd3de3f3644710fa2a697cfb91ec262eece4d242
+  SpeedcheckerCapacitorPlugin: 51a97ea6d245ac572c8e2ade0c3ac769e8a03d45
+  SpeedcheckerSDK: f4ce6ce969acedf85652d1a615109ec527ed7406
+
+PODFILE CHECKSUM: 87f2fc97f5e141b9ee2dd1b93260a68f41bb9e00
+
+COCOAPODS: 1.14.3
